@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: url('hello.jpg');
+            background-position: center center;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .login-container {
+            background: linear-gradient(135deg,rgba(255,255,255,0.1),rgba(255,255,255,0));
+            backdrop-filter: blur(10px); 
+            border-radius: 15px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            width: 400px;
+            color: #000;
+        }
+
+        .header {
+            background: linear-gradient(to right, rgb(98, 168, 233), rgb(53, 118, 204));
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin: 0;
+            color: #000;
+        }
+
+        .form {
+            padding: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 0.9rem;
+            display: block;
+            margin-bottom: 5px;
+            color: black;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #444;
+            border-radius: 5px;
+            background: transparent;
+            color: #000;
+        }
+
+        .toggle-password {
+            position: absolute;
+            margin-left: -28px;
+            margin-top: 8px;
+
+        }
+
+        .toggle-password:hover {
+            cursor: pointer;
+
+        }
+
+        .btn {
+            background: linear-gradient(to right, rgb(98, 168, 233), rgb(53, 118, 204));
+            border: none;
+            border-radius: 5px;
+            color: #000;
+            font-size: 1rem;
+            padding: 10px;
+            width: 100%;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .forgot{
+            margin-top: -10px;
+            padding-bottom: 20px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: scale(0.95);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.85rem;
+            color: #0a0a0a;
+        }
+
+        .footer a {
+            color: #030303;
+            text-decoration: none;
+            font-weight: bold;
+
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-container">
+        <div class="header">
+            <h1>Sign In</h1>
+        </div>
+        <div class="form">
+            <form>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter your password" required>
+                    <span class="toggle-password" onclick="togglePassword()">🙈</span>
+                </div>
+                <div class="forgot">
+                    forgot?password.
+                </div>
+                <button type="submit" class="btn">Login</button>
+            </form>
+            <div class="footer">
+                <p>Don't have an account? <a href="register.html">Register Now</a></p>
+            </div>
+        </div>
+    </div>
+    <script>
+        function togglePassword() {
+            const passwordField = document.getElementById('password');
+            const Icon = document.querySelector('.toggle-password');
+
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                Icon.textContent = '👁️‍🗨️';
+            } else {
+                passwordField.type = 'password';
+                Icon.textContent = '🙈';
+            }
+        }
+    </script>
+</body>
+
+</html>

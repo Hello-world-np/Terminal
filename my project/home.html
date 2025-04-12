@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #fff;
+            height: 100%;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        .slide {
+            height: 530px;
+            width: 180px;
+            position: absolute;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+            backdrop-filter: blur(15px);
+            transition: 0.5s ease;
+            transform: translateX(-180px);
+            z-index: 1;
+        }
+
+        input:checked~.slide {
+            transform: translateX(0);
+            box-shadow: 0 0 15px rgba(235, 230, 230, 0.7);
+        }
+
+        h1 {
+            color: rgb(233, 13, 13);
+            font-weight: 400;
+            text-align: center;
+            padding: 10px 0;
+            padding-left: 30px;
+            padding-top: 16px;
+            /* pointer-events: none; */
+        }
+
+        ul li {
+            list-style: none;
+            margin-left: 20px;
+            margin-top: 5px;
+            font-size: large;
+        }
+
+        ul li a {
+            color: rgb(233, 231, 231);
+            font-weight: 500;
+            padding: 5px;
+            margin-left: 0;
+            display: block;
+            text-transform: capitalize;
+            text-decoration: none;
+            transition: 0.2s ease-out;
+        }
+
+        ul li a:hover {
+            color: #fff;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+            backdrop-filter: blur(15px);
+            transform: scale(1.1);
+        }
+
+        input {
+            display: none;
+        }
+
+        .tog {
+            position: absolute;
+            height: 30px;
+            width: 30px;
+            background-color: rgb(119, 1, 1);
+            z-index: 1;
+            cursor: pointer;
+            border-radius: 2px;
+            top: 25px;
+            left: 15px;
+            box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .tog .dash {
+            position: absolute;
+            height: 2px;
+            width: 20px;
+            background-color: #f6f3f3;
+            border-radius: 50px;
+            transition: 0.3s ease;
+        }
+
+        .tog .top {
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .tog .mid {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .tog .last {
+            top: 70%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        input:checked~.tog .top {
+            left: 2px;
+            top: 14px;
+            width: 25px;
+            transform: rotate(45deg);
+        }
+
+        input:checked~.tog .last {
+            left: 2px;
+            top: 14px;
+            width: 25px;
+            transform: rotate(-45deg);
+        }
+
+        input:checked~.tog .mid {
+            opacity: 0;
+            transform: translate(20px);
+        }
+
+        body {
+            background-image: url("red bg.jpg");
+            background-attachment: fixed;
+            background-position: center center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            position: relative;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .main .box {
+            height: 100%;
+            width: 100%;
+            opacity: 0.48;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            background-color: black;
+        }
+
+        nav {
+            max-width: 65vw;
+            justify-content: space-between;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            height: 100px;
+            position: relative;
+            z-index: 10;
+            flex-wrap: wrap;
+        }
+
+        .home a {
+            padding: 10px 15px;
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .home a:hover {
+            border-radius: 20px;
+            background-color: #2d2d2d;
+            border-bottom: 2px solid #ff6b08;
+            cursor: pointer;
+            transition: 0.3s ease-in-out;
+        }
+
+        nav img {
+            color: red;
+            width: 160px;
+            position: relative;
+        }
+
+        .grid {
+            position: absolute;
+            top: 100px;
+            left: 0;
+            width: 100%;
+            height: calc(100vh - 100px);
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding: 20px;
+            box-sizing: border-box;
+            z-index: 1;
+        }
+
+        .grid-parts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
+
+        .items {
+            display: grid;
+            gap: 8px;
+            text-align: center;
+            padding-top: 20px;
+            max-width: 960px;
+        }
+
+        .items img {
+            text-decoration: none;
+            color: white;
+            height: 120px;
+            width: 180px;
+            border-radius: 10px;
+
+        }
+
+
+        /* Media Queries */
+        @media (max-width: 1080px) {
+            nav {
+                min-width: 45vh;
+                padding: 5px 0;
+                justify-content: center;
+            }
+
+            nav img {
+                width: 95px;
+            }
+
+            .home a {
+                font-size: 10px;
+                padding: 6px;
+            }
+
+            .home img {
+                margin-left: 44px;
+            }
+
+        }
+
+        @media (max-width: 480px) {
+            nav {
+                flex-direction: column;
+                text-align: center;
+                gap: 8px;
+            }
+
+            nav img {
+                width: 95px;
+            }
+
+            .home a {
+                font-size: 10px;
+                padding: 4px;
+                display: inline-block;
+            }
+
+            .home img {
+                margin-left: 42px;
+            }
+
+
+        }
+
+        @media (max-width: 362px) {
+            nav {
+                min-width: 40vh;
+                padding: 4px 0;
+                justify-content: center;
+            }
+
+            nav img {
+                width: 85px;
+            }
+
+            .home a {
+                font-size: 8px;
+                padding: 4px;
+            }
+
+            .home img {
+                margin-left: 30px;
+            }
+
+            .grid-parts {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <nav class="home">
+            <span><img src="t_bg-remover-gen_2s21bAi7mhwTZCP0CoXsMwt9CnA (1).png" alt="Logo" width="160"></span>
+            <div>
+                <span><a class="nav_link" href="home.html">HOME</a></span>
+                <span><a class="nav_link" href="contact.html">CONTACT US</a></span>
+                <span><a class="nav_link" href="about.html">ABOUT US</a></span>
+                <span><a class="nav_link" href="service.html">OUR SERVICES</a></span>
+                <div id="marker"></div>
+            </div>
+        </nav>
+        <div class="grid">
+            <div class="grid-parts">
+                <div class="items">
+                    <img src="red 1.jpg" alt="">
+                    <div class="details">Rs1000</div>
+                    <img src="red 1.jpg" alt="">
+                    <img src="red 1.jpg" alt="">
+                    <img src="red 1.jpg" alt="">
+                    <img src="red 1.jpg" alt="">
+                    <img src="red 1.jpg" alt="">
+                    <img src="red 1.jpg" alt="">
+                </div>
+                <div class="items">
+                    <img src="red 2.jpg" alt="">
+                    <img src="red 2.jpg" alt="">
+                    <img src="red 2.jpg" alt="">
+                    <img src="red 2.jpg" alt="">
+                    <img src="red 2.jpg" alt="">
+                    <img src="red 2.jpg" alt="">
+                    <img src="red 2.jpg" alt="">
+                </div>
+                <div class="items">
+                    <img src="red 3.jpg" alt="">
+                    <img src="red 3.jpg" alt="">
+                    <img src="red 3.jpg" alt="">
+                    <img src="red 3.jpg" alt="">
+                    <img src="red 3.jpg" alt="">
+                    <img src="red 3.jpg" alt="">
+                    <img src="red 3.jpg" alt="">
+                </div>
+                <div class="items">
+                    <img src="red 4.webp" alt="">
+                    <img src="red 4.webp" alt="">
+                    <img src="red 4.webp" alt="">
+                    <img src="red 4.webp" alt="">
+                    <img src="red 4.webp" alt="">
+                    <img src="red 4.webp" alt="">
+                    <img src="red 4.webp" alt="">
+                </div>
+                <div class="items">
+                    <img src="red bg.jpg" alt="">
+                    <img src="red bg.jpg" alt="">
+                    <img src="red bg.jpg" alt="">
+                    <img src="red bg.jpg" alt="">
+                    <img src="red bg.jpg" alt="">
+                    <img src="red bg.jpg" alt="">
+                    <img src="red bg.jpg" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="nav-slide-wrapper">
+                <label>
+                    <input type="checkbox">
+                    <div class="tog">
+                        <span class="dash top"></span>
+                        <span class="dash mid"></span>
+                        <span class="dash last"></span>
+                    </div>
+                    <div class="slide">
+                        <h1>Content</h1>
+                        <ul>
+                            <li><a href="#">Popular</a></li>
+                            <li><a href="#">Trending</a></li>
+                            <li><a href="#">Men's</a></li>
+                            <li><a href="#">Women's</a></li>
+                            <li><a href="#">Wall Clock</a></li>
+                            <li><a href="#">Electronic</a></li>
+                            <li><a href="#">Fan</a></li>
+                            <li><a href="#">Summer</a></li>
+                            <li><a href="#">Winter</a></li>
+                            <li><a href="#">Bulb</a></li>
+                            <li><a href="#">Parts</a></li>
+                            <li><a href="#">Decorative</a></li>
+                            <li><a href="#">Others</a></li>
+                        </ul>
+                    </div>
+                </label>
+            </div>
+        </div>
+        <div class="box"></div>
+    </div>
+</body>
+
+</html>
